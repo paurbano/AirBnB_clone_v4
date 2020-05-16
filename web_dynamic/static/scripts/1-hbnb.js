@@ -1,17 +1,15 @@
-$('document').ready(function() {
-  let amenityID = {}
-  $('input[type="checkbox"]').click(function() {
-    
-    if ($(this).prop('checked') == true)
-    {
+$('document').ready(function () {
+  const amenityID = {};
+
+  $('input[type="checkbox"]').change(function () {
+    if ($(this).prop('checked') === true) {
       // store amenity ID in dict
-      amenityID[$(this).data.name] = $(this).data.id;
-    }
-    else
-    {
+      amenityID[$(this).attr('data-id')] = $(this).attr('data-name');
+    } else {
       // remove amenity ID from dict
-      delete amenityID[$(this).data.name]
-    }    
+      delete amenityID[$(this).attr('data-id')];
+    }
+    $('.amenities h4').text(Object.values(amenityID).join(', '));
+    console.log(amenityID);
   });
-  $('.amenities h4').text(Object.values(amenityID).join(', '));
 });
